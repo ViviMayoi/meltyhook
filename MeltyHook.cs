@@ -120,6 +120,9 @@ namespace MeltyHook
         CC_PLR_STRUCT_SIZE              = 0xAFC,
 
         CC_P1_HEAT_ADDR                 = 0x555214,
-        CC_P2_HEAT_ADDR                 = CC_P1_HEAT_ADDR + CC_PLR_STRUCT_SIZE
+        CC_P1_PUPPET_STATE_ADDR         = 0x5552A8,
+
+        CC_P2_HEAT_ADDR                 = CC_P1_HEAT_ADDR + CC_PLR_STRUCT_SIZE,
+        CC_P2_PUPPET_STATE_ADDR         = CC_P1_PUPPET_STATE_ADDR + CC_PLR_STRUCT_SIZE 
     }
 }
