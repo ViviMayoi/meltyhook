@@ -98,7 +98,7 @@ namespace MeltyHook
 
     public enum MeltyMem: int
     {
-        // Taken from https://github.com/pluot-mb/CCCaster/blob/master/netplay/Constants.hpp
+        // Values taken from https://github.com/pluot-mb/CCCaster/blob/master/netplay/Constants.hpp
 
         // Character Select Data
         CC_P1_SELECTOR_MODE_ADDR        = 0x74D8EC,
@@ -116,13 +116,16 @@ namespace MeltyHook
         CC_STAGE_SELECTOR_ADDR          = 0x74FD98,
 
         // Total size of a single player structure.
-        // Note: there are FOUR player structs in memory, due to the puppet characters.
         CC_PLR_STRUCT_SIZE              = 0xAFC,
 
         CC_P1_HEAT_ADDR                 = 0x555214,
         CC_P1_PUPPET_STATE_ADDR         = 0x5552A8,
 
         CC_P2_HEAT_ADDR                 = CC_P1_HEAT_ADDR + CC_PLR_STRUCT_SIZE,
-        CC_P2_PUPPET_STATE_ADDR         = CC_P1_PUPPET_STATE_ADDR + CC_PLR_STRUCT_SIZE 
+        CC_P2_PUPPET_STATE_ADDR         = CC_P1_PUPPET_STATE_ADDR + CC_PLR_STRUCT_SIZE,
+
+        // Values found by ViviMayoi
+        CC_P1_SCORE_ADDR = 0x770EB4,
+        CC_P2_SCORE_ADDR = 0x76FC14,
     }
 }
