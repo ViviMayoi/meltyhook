@@ -125,7 +125,7 @@ namespace MeltyHook
         CC_P2_PUPPET_STATE_ADDR         = CC_P1_PUPPET_STATE_ADDR + CC_PLR_STRUCT_SIZE,
 
         // Values found by ViviMayoi
-        CC_P1_SCORE_ADDR = 0x770EB4,
-        CC_P2_SCORE_ADDR = 0x76FC14,
+        CC_P1_SCORE_ADDR = 0x76FC14,
+        CC_P2_SCORE_ADDR = 0x770EB4
     }
 }
