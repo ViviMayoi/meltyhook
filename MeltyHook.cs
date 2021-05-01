@@ -42,6 +42,7 @@ namespace MeltyHook
 
         public bool SwapActiveProcess()
         {
+            GetMB();
             if (MeltyBloodProc2 != null)
             {
                 UseSecondMelty = !UseSecondMelty;
