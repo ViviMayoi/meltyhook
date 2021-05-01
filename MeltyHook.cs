@@ -9,8 +9,10 @@ namespace MeltyHook
         static string ProcName = "MBAA";        // The name of the executable
         const int PROCESS_WM_READ = 0x0010;
 
-        Process MeltyBloodProc;                 // The process for the hooked Melty Blood
+        public Process MeltyBloodProc;                 // The process for the hooked Melty Blood
+        public Process MeltyBloodProc2;
         public bool FoundMelty = false;         // A bool for finding the Melty Blood executable
+        public bool UseSecondMelty = false; // A bool for deciding which active Melty process to hook onto
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -20,7 +22,12 @@ namespace MeltyHook
         public byte[] ReadMem(int adr, int size)
         {
             // Get the process handle
-            IntPtr ProcessHandle = OpenProcess(PROCESS_WM_READ, false, MeltyBloodProc.Id);
+            IntPtr ProcessHandle;
+            if (!UseSecondMelty)
+                ProcessHandle = OpenProcess(PROCESS_WM_READ, false, MeltyBloodProc.Id);
+            else
+                ProcessHandle = OpenProcess(PROCESS_WM_READ, false, MeltyBloodProc2.Id);
+
 
             // Create a buffer
             byte[] Buffer = new byte[size];
@@ -33,11 +40,26 @@ namespace MeltyHook
             return Buffer;
         }
 
+        public bool SwapActiveProcess()
+        {
+            if (MeltyBloodProc2 != null)
+            {
+                UseSecondMelty = !UseSecondMelty;
+                return true;
+            }
+            return false;
+        }
+
         public bool GetMB()
         {
             Process[] MBProcesses = Process.GetProcessesByName(ProcName);
             if(MBProcesses.Length != 0) {
                 MeltyBloodProc = MBProcesses[0];
+
+                if (MBProcesses.Length > 1)
+                    MeltyBloodProc2 = MBProcesses[1];
+                else
+                    MeltyBloodProc2 = null;
 
                 // Return if the header for this process is correct
                 return ReadMem(0x400000, 1)[0] != 0x00;
