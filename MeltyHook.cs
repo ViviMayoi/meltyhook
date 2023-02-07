@@ -121,7 +121,7 @@ namespace MeltyHook
 
     public enum MeltyMem: int
     {
-        // Values taken from https://github.com/pluot-mb/CCCaster/blob/master/netplay/Constants.hpp
+        // Most values taken from https://github.com/pluot-mb/CCCaster/blob/master/netplay/Constants.hpp
 
         // Character Select Data
         CC_P1_SELECTOR_MODE_ADDR        = 0x74D8EC,
@@ -147,8 +147,13 @@ namespace MeltyHook
         CC_P2_HEAT_ADDR                 = CC_P1_HEAT_ADDR + CC_PLR_STRUCT_SIZE,
         CC_P2_PUPPET_STATE_ADDR         = CC_P1_PUPPET_STATE_ADDR + CC_PLR_STRUCT_SIZE,
 
-        // Values found by ViviMayoi
+        // Player Score Values
         CC_P1_SCORE_ADDR = 0x76FC14,
-        CC_P2_SCORE_ADDR = 0x770EB4
+        CC_P2_SCORE_ADDR = 0x770EB4,
+
+        // Game States
+        CC_INTRO_STATE_ADDR            = 0x55D20B,
+        CC_GAME_MODE_ADDR              = 0x54EEE8
     }
+
 }
